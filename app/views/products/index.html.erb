@@ -1,0 +1,13 @@
+ハロー
+新規検索
+
+<%# <%= line_chart @data, width: "800px", height: "500px" % %>
+<%# <%= scatter_chart @data, width: "800px", height: "500px" %>
+or
+<%# <%= line_chart @approximate, width: "800px", height: "500px" %> %> %>
+<%# <%= scatter_chart City.pluck(:size, :population), xtitle: "Size", ytitle: "Population" % %>
+<%# <%= line_chart @goals.map { |goal|{name: goal.name, data: goal.feats.group_by_week(:created_at).count}} %> %>
+<%# <%= line_chart Feat.group(:goal_id).group_by_week(:created_at).count %> 
+
+<%= scatter_chart @maltidata.each do |da|
+{:name => da.name, :data => da.data } end %>

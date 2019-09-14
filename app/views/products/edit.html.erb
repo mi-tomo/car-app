@@ -1,0 +1,38 @@
+<div class="submitbox">
+  <%= form_for @cars do |f| %>
+  <div class="submitbox__image">
+    <%# <%= @cars.name   %>
+  </div>
+  <div class="submitbox__image">
+    <%# <%= @cars.name  %> 
+  </div>
+  <div class="submitbox__image">
+    <%= f.text_field :model, placeholder: 'モデル名', style: 'width: 100%;height: 30px;'  %>
+  </div>
+  <div class="submitbox__text">
+  <%= f.number_field :exhaust, placeholder: '排気量', style: 'width: 100%;height: 30px;'  %>
+  </div>
+  <div class="submitbox__text">
+  <%= f.number_field :modelyear, placeholder: '＊年式', style: 'width: 100%;height: 30px;'  %>
+  </div>
+  <div class="submitbox__image">
+    <%= f.text_field :color, placeholder: '車体色', style: 'width: 100%;height: 30px;'  %>
+  </div>
+  <div class="submitbox__text">
+  <%= f.number_field :distance, placeholder: '＊走行距離（万km)', style: 'width: 100%;height: 30px;'  %>
+  </div>
+  <div class="submitbox__text">
+  <%= f.number_field :price, placeholder: '＊金額（万円）', style: 'width: 100%;height: 30px;'  %>
+  </div>
+  <div class="submitbox__image">
+    <%= f.text_field :repare, placeholder: '修復歴', style: 'width: 100%;height: 30px;'  %>
+  </div>
+  <div class="submitbox__submit">
+  <%= button_tag type: "submit", class: "btn btn--block" do %>
+              実行
+              <% end %>
+  </div>
+
+   <% end %>
+
+</div>

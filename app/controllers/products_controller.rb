@@ -32,19 +32,36 @@ class ProductsController < ApplicationController
   #  marutidata.push(n_data,approximate)     
   
   
-  approximate = Array.approximate_xy(x, y)
-  @approximate = approximate
+  abc_approximate = Array.approximate_xy(x, y)
+  abc = abc_approximate[0]
+  @hantei = ""
+  unless Product.first.distance == "" && Product.first.distance==""
+  hikakukyori = Product.first.distance.to_i
+  heikinprice = abc[0] + abc[1] * hikakukyori + abc[2] * hikakukyori ** 2
+  hikakuresult = [[hikakukyori,Product.first.price.to_i]]
+      if heikinprice > Product.first.price.to_i
+       @hantei = "相場平均価格より割安です"
+      else 
+        @hantei = "相場平均価格より割高です（要再検討）"
+      end
+  end
+  
+  @approximate = abc_approximate.drop(1)
+  # binding.pry
   maltidata1={}
   maltidata1[:name]  ="市場"
   maltidata1[:data]  = n_data
   maltidata2={}
   maltidata2[:name]  ="近似曲線"
-  maltidata2[:data]  = approximate
+  maltidata2[:data]  = @approximate
+  maltidata3={}
+  maltidata3[:name]  ="検討中案件"
+  maltidata3[:data]  = hikakuresult
 
   
-  maltidata=[maltidata1,maltidata2]
+  @maltidata=[maltidata1,maltidata2,maltidata3]
   # binding.pry
-  @maltidata = maltidata
+  # @maltidata = maltidata
   
 
 

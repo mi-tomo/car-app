@@ -36,12 +36,15 @@ reg_line = ary_x.reg_line(ary_y)
 a = reg_line[:a]
 b = reg_line[:b]
 c = reg_line[:c]
+abc = [a,b,c]
+
+
 puts "a = #{reg_line[:a]}"
 puts "b = #{reg_line[:b]}"
 puts "c = #{reg_line[:c]}"
 
-n_kinji = []
-
+n_kinji = [abc]
+# n_kinji << abc
 x = 0
 while x < 15 do
   kinji = [] 
@@ -50,7 +53,7 @@ while x < 15 do
   n_kinji << kinji
   x = x + 0.1
 end
-
+# n_kinji.push(abc)
 return n_kinji
 end
 end

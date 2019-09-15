@@ -31,8 +31,8 @@ class ProductsController < ApplicationController
           # ２項近似曲線（単回帰曲線）
   #  marutidata.push(n_data,approximate)     
   
-  
-  abc_approximate = Array.approximate_xy(x, y)
+  unless @products[0] == nil
+  abc_approximate = Array.approximate_xy(x, y) 
   abc = abc_approximate[0]
   @hantei = ""
   unless Product.first.distance == "" && Product.first.distance==""
@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
   maltidata3={}
   maltidata3[:name]  ="検討中案件"
   maltidata3[:data]  = hikakuresult
-
+end
   
   @maltidata=[maltidata1,maltidata2,maltidata3]
   # binding.pry
@@ -66,7 +66,7 @@ class ProductsController < ApplicationController
 
 
 
-
+  
 
   end
   def new

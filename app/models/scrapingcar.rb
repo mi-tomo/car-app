@@ -35,12 +35,14 @@ class Scrapingcar
             carname.address = address
             carname.maker_name = maker+":  " + car[0]
 
-
-            carname.save
             
-
+            carname.save if Carname.find_by(name: car[0])==nil
+            
+    
             
           end 
+          
+
   end    
 end
           

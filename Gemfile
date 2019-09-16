@@ -66,4 +66,5 @@ gem 'sprockets', '3.7.2'
 gem 'kaminari'
 gem 'mechanize'
 gem 'chartkick'
-gem 'spinjs-rails'
+# gem 'spinjs-rails'
+gem "jquery-rails"

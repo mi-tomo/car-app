@@ -7,7 +7,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string        :exhaust
       t.string        :modelyear
       t.string        :color
-      t.string        :distance
+      t.float        :distance
       t.string        :price
       t.string      :repare
       t.string      :evaluation

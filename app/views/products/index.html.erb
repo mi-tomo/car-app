@@ -1,14 +1,41 @@
-ハロー
-新規検索
+<div class="contents">
+  <div class="i_up">
+        <div class="i_up__left1">
+        車両価格分析
+        </div>
+        <div class="i_up__left2">
+        車種名：<%= @carname%>
+        </div>
+        <div class="i_up__mid">
+      
+        <a href="/products/1/edit">詳細条件<br>入力</a>
+        
+        </div>
+        <div class="i_up__right">
+        <a href="/products/new">新規検索<br>(リセット)</a>
+        </div>
+  </div>
+  <div class="i_mid">
+    <div class="i_mid__price">
+    万円
+    </div>
+    <div class="i_mid__graph">
+    <%= scatter_chart @maltidata.each do |da|
+    {:name => da.name, :data => da.data } end %>
+    </div>
+    <div class="i_mid__label">
+    走行距離ー価格 分布
+    
+    <div class="i_mid__distance">
+    万km
+    </div>
+    </div>
+  </div>
+  <div class="i_low1">
+   <%= @hantei1  %> 
+  </div>
+  <div class="i_low2">
+   <%= @hantei2  %> 
+  </div>
 
-<%= @hantei  %> 
-<%# <%= line_chart @data, width: "800px", height: "500px" % %>
-<%# <%= scatter_chart @data, width: "800px", height: "500px" %>
-or
-<%# <%= line_chart @approximate, width: "800px", height: "500px" %> %> %>
-<%# <%= scatter_chart City.pluck(:size, :population), xtitle: "Size", ytitle: "Population" % %>
-<%# <%= line_chart @goals.map { |goal|{name: goal.name, data: goal.feats.group_by_week(:created_at).count}} %> %>
-<%# <%= line_chart Feat.group(:goal_id).group_by_week(:created_at).count %> 
-
-<%= scatter_chart @maltidata.each do |da|
-{:name => da.name, :data => da.data } end %>
+</div>

@@ -44,16 +44,18 @@ puts "b = #{reg_line[:b]}"
 puts "c = #{reg_line[:c]}"
 
 n_kinji = [abc]
-# n_kinji << abc
+
+maxdistance = ary_x.max.to_i
+
 x = 0
-while x < 15 do
+while x < maxdistance do
   kinji = [] 
   y = a + b * x + c * x ** 2
   kinji.push(x, y)
   n_kinji << kinji
-  x = x + 0.1
+  x = x + 0.05
 end
-# n_kinji.push(abc)
+
 return n_kinji
 end
 end

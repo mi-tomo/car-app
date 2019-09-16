@@ -5,3 +5,250 @@ div.spinner {
   position: fixed !important;
 }
 
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color:white;
+  
+}
+.header {
+  background-color: lightblue;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  font-size:50px;
+    line-height: 50px;
+    font-weight:bold;
+    color: white;
+    text-align:center;
+}
+
+.footer {
+
+  text-align: right;
+  background-color: lightblue;
+  width: 100%;
+  height: 25px;
+  z-index: 1;
+  bottom: 0;
+  position: fixed;
+  color: white;
+  
+}
+// ↑application
+//↓index
+.contents{
+  
+   height: 100%;
+   width: 100%;
+   padding: auto;
+  position: absolute;
+  top: 60px;
+}
+.i_up{
+  height: 60px;
+  width: 100%;
+  display: block;
+  
+
+}
+  .i_up__left1{
+    height: 60px;
+    width: 20%;
+    // display: inline-block;
+    float:left;
+    font-size:25px;
+    line-height: 25px;
+    padding-left:20px;
+    display: flex;
+    align-items: center;
+    // vertical-align:middle;
+    text-align:left;
+    padding-top:0;
+    font-weight: bold;
+    
+  }
+  .i_up__left2{
+    height: 60px;
+    width: 30%;
+    // display: inline-block;
+    float:left;
+    font-size:25px;
+    line-height: 25px;
+    display: flex;
+    align-items: center; 
+    text-align:left;
+    padding-top:0;
+    font-weight: bold;
+
+  }
+  .i_up__right{
+    height: 60px;
+    width: 12%;
+    float:right;
+    font-size:20px;
+    text-align:center;
+    margin-left:10px;
+    padding-top:0;
+    font-weight: bold;
+    border: solid rgb(0, 251, 255);
+  }
+  .i_up__mid{
+    height: 60px;
+    width: 12%;
+    float:right;
+    font-size:20px;
+    text-align:center;
+    margin-left:10px;
+    padding-top:0;
+    font-weight: bold;
+    border: solid rgb(0, 251, 255);
+
+  }
+  .i_mid{
+    height:350px;
+    width: 95%;
+    display: block;
+    border: solid rgb(0, 251, 255);
+    padding-top:80px;
+    margin: 20px;
+    padding:0 20px;
+  }
+
+
+  .i_mid__price{
+    height:10px;
+    width: 100%;
+    display: block; 
+    font-weight: bold;
+    font-size:20px;
+    // border: solid rgb(0, 251, 255);
+  }
+
+  .i_mid__label{
+    height:30px;
+    width: 800px;
+    text-align:left;
+    font-weight: bold;
+    font-size:20px;
+    // display: block; 
+    float:right;
+  }
+  .i_mid__distance{
+    height:30px;
+    width: 100px;
+    text-align: right;
+    float:right;
+    // display: block; 
+  }
+
+.i_mid__graff{
+  height:300px;
+  width: 100%;
+  display: block;
+  padding-top:80px;
+  margin: 20px;
+  padding:0 20px;
+  
+  border: solid rgb(0, 251, 255);
+}
+
+.i_low1{
+ width: 100%;
+ color:blue;
+//  height:100;
+ display: block;
+ font-size:40px;
+//  line-height: 30px;
+//  vertical-align:top;
+ text-align:center;
+ padding-top:0;
+ font-weight: bold;
+ margin-bottom:0;
+//  border: solid rgb(0, 251, 255);
+}
+.i_low2{
+  width: 100%;
+  color:red;
+ //  height:100;
+  display: block;
+  font-size:40px;
+ //  line-height: 30px;
+ //  vertical-align:top;
+  text-align:center;
+  padding-top:0;
+  font-weight: bold;
+  margin-bottom:0;
+ //  border: solid rgb(0, 251, 255);
+ }
+// ------------------
+ 
+
+////////////new
+.submitbox{
+
+  width: 100%;
+  height:100%;
+  padding:100px 30px;
+  
+  
+margin:auto;
+  // left:500px;
+}
+// .submitbox__frame{
+
+//   width: 400px;
+//   height:500px;
+//   padding:30px 30px;
+//   border: solid rgb(0, 251, 255);
+//   // margin:auto;
+//   // left:500px;
+// }
+.new_product{
+  font-size:15px;
+  width: 400px;
+  height:600px;
+  padding:10px 30px;
+  border: solid rgb(0, 251, 255);
+  margin:auto;
+  font-weight: bold;
+  // left:500px;
+}
+#product_name{
+  width:100%;
+  height:40px;
+  font-size:20px;
+  font-weight: bold;
+}
+
+.edit_product{
+  font-size:15px;
+  width: 400px;
+  height:600px;
+  padding:30px 30px;
+  border: solid rgb(0, 251, 255);
+  margin:auto;
+  font-weight: bold;
+  // left:500px;
+}
+.submitbox__image{
+  margin-top:15px;
+}
+.submitbox__text{
+  margin-top:15px;
+}
+#product_distance{
+  background-color: yellow;
+}
+#product_price{
+  background-color: yellow;
+}
+.btn--block{
+  margin-top:30px;
+  float:left;
+  height:30px;
+  width:60px;
+}
+

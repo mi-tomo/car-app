@@ -1,11 +1,11 @@
 require "array.rb"
 class ProductsController < ApplicationController
+  before_action :move_to_index, except: [:new,:create]
   def index
-    @cars = "プログラミングなう"
-    
+  
     # @products = Product.where(repare: "なし").where.not(evaluation: "R" or ""or null).where.not(price: ""or null).order("distance DESC")
   @products = Product.where(repare: "なし").where.not(evaluation: "R"||""||nil).where.not(price: "---"||""||nil).where.not(distance: "---"||""||nil).order("distance DESC")
-  @products = @products.where.not(evaluation: "S"||"1"||"2"||"6")
+  @products = @products.where.not(evaluation: "S"||"1"||"2"||"6")unless Product.first.name == ""
   @products = @products.where('model LIKE(?)', "%#{Product.first.model}%") unless Product.first.model == ""
   @products = @products.where('color LIKE(?)', "%#{Product.first.color}%") unless Product.first.color == ""
   @products = @products.where(modelyear: Product.first.modelyear)if Product.first.modelyear != ""
@@ -40,9 +40,13 @@ class ProductsController < ApplicationController
   heikinprice = abc[0] + abc[1] * hikakukyori + abc[2] * hikakukyori ** 2
   hikakuresult = [[hikakukyori,Product.first.price.to_i]]
       if heikinprice > Product.first.price.to_i
-       @hantei = "相場平均価格より割安です"
+        sagaku = heikinprice - Product.first.price.to_i
+        @hantei1 = "相場平均価格より_#{sagaku.round(1)}万円_割安です"
+        @hantei2 =""
       else 
-        @hantei = "相場平均価格より割高です（要再検討）"
+        sagaku = Product.first.price.to_i - heikinprice
+        @hantei2 = "相場平均価格より_#{sagaku.round(1)}万円_割高です（要再検討）"
+        @hantei1=""
       end
   end
   
@@ -65,8 +69,9 @@ end
   
 
 
+carname = Carname.find_by(address:Product.first.name)
+@carname = carname.maker_name
 
-  
 
   end
   def new
@@ -96,6 +101,8 @@ end
 
   def edit
     @cars = Product.first
+    carname = Carname.find_by(address:Product.first.name)
+    @carname = carname.maker_name
   end
   
 
@@ -111,7 +118,10 @@ end
     
   #   params.require(:product).permit(:maker, :name,:model, :exhaust,:modelyear, :color,:distance, :price,:repare)
     
+  private
+  def move_to_index
+    product = Product.first
+    redirect_to controller: :products, action: :new if product == nil
+  end
   
-  # end
-
 end

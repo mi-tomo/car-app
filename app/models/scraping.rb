@@ -18,12 +18,11 @@ class Scraping
       distance = distance.to_f
         if unit=="km"
           distance = distance * 0.0001
-          distance = distance.floor(4).to_s
+          distance = distance.floor(4).to_f
           unit = "万km"
         end
         if distance > 20
           distance = nil
-          distance = distance.to_s
         end
       price = page.at('.totalPrice__price span').inner_text if page.at('.totalPrice__price span')
       repare = page.at('//p[text()="修復歴"]/following-sibling::p[position()=1]').inner_text if page.at('//p[text()="修復歴"]/following-sibling::p[position()=1]')

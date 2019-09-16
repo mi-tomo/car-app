@@ -1,50 +1,36 @@
 
 <div class="submitbox">
+
   <%= form_for @cars do |f| %>
-  <div class="submitbox__image">
-  <%# <%= f.select :maker, [["トヨタ”, "bT0"],["ホンダ”, "bH0”]] ,class:"form-control"%> 
-  <%# <%= f.select :maker, [["トヨタ", "bT0"], ["ホンダ", "bH0"], ["英語", "英語"], ["理科", "理科"], ["社会", "社会"], ["その他", "その他"]]  %> 
-  <%# <%= f.select(:maker, Product::MAKER)   %>
- <%# <%= f.collection_select :maker, Carname.all, :maker, :maker  %>
-    <%# <%= f.text_field :maker, placeholder: '＊メーカー', style: 'width: 100%;height: 30px;'  %> 
-
-
-  </div>
-  <div class="submitbox__image">
-    <%# <%= f.text_field :name, placeholder: '＊車名', style: 'width: 100%;height: 30px;'   %>
-    <%= f.collection_select :name, Carname.all, :address, :maker_name %>
-    <%# <%= f.select(:name, Product::NAME)  %>
-  </div>
-  <div class="submitbox__image">
+  
+ 
+ <div class="submitbox__text">車種情報入力
+    <%= f.collection_select :name, Carname.all, :address, :maker_name , style: 'width: 100%;height: 30px;' %>
+    </div>
+  <div class="submitbox__image">モデル名
     <%= f.text_field :model, placeholder: 'モデル名', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__text">
+  <div class="submitbox__text">排気量
   <%= f.number_field :exhaust, placeholder: '排気量', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__text">
+  <div class="submitbox__text">年式
   <%= f.number_field :modelyear, placeholder: '＊年式', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__image">
+  <div class="submitbox__image">車体色
     <%= f.text_field :color, placeholder: '車体色', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__text">
+  <div class="submitbox__text">購入検討車 走行距離（万km）（計算時必須）
   <%= f.number_field :distance, placeholder: '＊走行距離（万km)', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__text">
+  <div class="submitbox__text">購入検討車 金額（万円）（計算時必須）
   <%= f.number_field :price, placeholder: '＊金額（万円）', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <%# <div class="submitbox__image">
-    <%= f.text_field :repare, placeholder: '修復歴', style: 'width: 100%;height: 30px;'  %>
-  <%# </div>  %>
   <div class="submitbox__submit">
   <%= button_tag type: "submit", class: "btn btn--block" do %>
               実行
-        
               <% end %>
-    <%# <%= link_to '削除', "/products/", method: :delete %> 
   </div>
 
    <% end %>
 
 </div>
-<div id="spinner"></div>

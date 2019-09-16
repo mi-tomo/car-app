@@ -70,6 +70,7 @@ end
 
   end
   def new
+    
     product = Product.all
     num = Product.count
     product.where(id: 1..999999).destroy_all

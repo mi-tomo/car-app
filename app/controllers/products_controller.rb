@@ -27,28 +27,27 @@ class ProductsController < ApplicationController
   
 
  @data = n_data
-      #配列形式でデータを用意する @data = [['2019-06-01', 100], ['2019-06-02', 200], ['2019-06-03', 150]]
-          # ２項近似曲線（単回帰曲線）
-  #  marutidata.push(n_data,approximate)     
   
   unless @products[0] == nil
   abc_approximate = Array.approximate_xy(x, y) 
   abc = abc_approximate[0]
-  @hantei = ""
-  unless Product.first.distance == "" && Product.first.distance==""
-  hikakukyori = Product.first.distance.to_i
-  heikinprice = abc[0] + abc[1] * hikakukyori + abc[2] * hikakukyori ** 2
-  hikakuresult = [[hikakukyori,Product.first.price.to_i]]
-      if heikinprice > Product.first.price.to_i
-        sagaku = heikinprice - Product.first.price.to_i
-        @hantei1 = "相場平均価格より_#{sagaku.round(1)}万円_割安です"
-        @hantei2 =""
-      else 
-        sagaku = Product.first.price.to_i - heikinprice
-        @hantei2 = "相場平均価格より_#{sagaku.round(1)}万円_割高です（要再検討）"
-        @hantei1=""
-      end
-  end
+  @hantei0="購入検討車の「走行距離」と「金額」を詳細条件から入力してください"
+    unless Product.first.distance == "" && Product.first.distance ==""
+    hikakukyori = Product.first.distance.to_i
+    heikinprice = abc[0] + abc[1] * hikakukyori + abc[2] * hikakukyori ** 2
+    hikakuresult = [[hikakukyori,Product.first.price.to_i]]
+        if heikinprice > Product.first.price.to_i
+          sagaku = heikinprice - Product.first.price.to_i
+          @hantei1 = "相場平均価格より_#{sagaku.round(1)}万円_割安です"
+          @hantei2 =""
+          @hantei0=""
+        else 
+          sagaku = Product.first.price.to_i - heikinprice
+          @hantei2 = "相場平均価格より_#{sagaku.round(1)}万円_割高です（要再検討）"
+          @hantei1=""
+          @hantei0=""
+        end
+    end
   
   @approximate = abc_approximate.drop(1)
   # binding.pry
@@ -64,16 +63,10 @@ class ProductsController < ApplicationController
 end
   
   @maltidata=[maltidata1,maltidata2,maltidata3]
-  # binding.pry
-  # @maltidata = maltidata
-  
+  carname = Carname.find_by(address:Product.first.name)
+  @carname = carname.maker_name
+end
 
-
-carname = Carname.find_by(address:Product.first.name)
-@carname = carname.maker_name
-
-
-  end
   def new
     
     product = Product.all

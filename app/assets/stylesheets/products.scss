@@ -56,7 +56,7 @@ html, body {
 }
   .i_up__left1{
     height: 60px;
-    width: 20%;
+    width: 25%;
     // display: inline-block;
     float:left;
     font-size:25px;
@@ -72,11 +72,12 @@ html, body {
   }
   .i_up__left2{
     height: 60px;
-    width: 30%;
+    width: 40%;
+    // color: blue;
     // display: inline-block;
     float:left;
-    font-size:25px;
-    line-height: 25px;
+    font-size:40px;
+    line-height: 30px;
     display: flex;
     align-items: center; 
     text-align:left;
@@ -154,7 +155,20 @@ html, body {
   
   border: solid rgb(0, 251, 255);
 }
-
+.i_low0{
+  width: 100%;
+  color:yellowgreen;
+ //  height:100;
+  display: block;
+  font-size:40px;
+ //  line-height: 30px;
+ //  vertical-align:top;
+  text-align:center;
+  padding-top:0;
+  font-weight: bold;
+  margin-bottom:0;
+ //  border: solid rgb(0, 251, 255);
+ }
 .i_low1{
  width: 100%;
  color:blue;

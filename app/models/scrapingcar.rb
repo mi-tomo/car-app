@@ -5,18 +5,18 @@ class Scrapingcar
     cars = []
     links = [] # 個別ページのリンクを保存する配列
     agent = Mechanize.new
+    carlists = [["レクサス","/bLE/index.html"],["トヨタ","/bTO/index.html"],["ホンダ","/bHO/index.html"],["日産","/bNI/index.html"],["スズキ","/bSZ/index.html"],["ダイハツ","/bDA/index.html"],["マツダ","/bMA/index.html"],["スバル","/bSB/index.html"],["三菱","/bMI/index.html"]]
+    carlists.each do |carlist|
+      maker = carlist[0]
+      next_url = carlist[1]
 
-    next_url = ""
- 
-      maker = "トヨタ"
-      current_page = agent.get("https://www.carsensor.net/usedcar/shashu/bTO/index.html"+ next_url)
-
+      current_page = agent.get("https://www.carsensor.net/usedcar/shashu"+ next_url)
       elements = current_page.search('.label--checkbox a')
-   
-      elements.each do |ele|
-        links << ele
- 
-      end
+      
+          elements.each do |ele|
+            links << ele
+    
+          end
 
    
           links.each do |link|
@@ -42,6 +42,8 @@ class Scrapingcar
             
           end 
           
+
+        end
 
   end    
 end

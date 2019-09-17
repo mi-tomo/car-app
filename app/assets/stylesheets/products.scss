@@ -290,11 +290,28 @@ margin:auto;
   width: 400px;
   height:600px;
   padding:30px 30px;
+  float:left;
+  // display: inline-block;
   background-color:rgba(255, 255, 255,0.9);
   border: solid rgb(0, 251, 255);
-  margin:auto;
+  // margin:auto;
+  margin-left: 250px;
   font-weight: bold;
   // left:500px;
+}
+.edit_product2{
+  font-size:15px;
+  width: 400px;
+  height:600px;
+  padding:30px 30px;
+  // display: inline-block;
+  float:left;
+  background-color:rgba(255, 255, 255,0.9);
+  border: solid rgb(0, 251, 255);
+  // margin-top:400px;
+  font-weight: bold;
+  // left:500px;
+  overflow: auto;
 }
 .submitbox__image{
   margin-top:15px;

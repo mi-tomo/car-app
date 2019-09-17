@@ -3,10 +3,14 @@
 <div class="submitbox">
 
   <%= form_for @cars do |f| %>
+  
  <%= @carname%>＿種情報入力 
-  <div class="submitbox__text">モデル名
-    <%= f.text_field :model, placeholder: 'モデル名', style: 'width: 100%;height: 30px;'  %>
+ <div class="submitbox__text">モデル名
+    <input placeholder="モデル名" style="width: 100%;height: 30px;" type="text" value="" name="product[model]" id="product_model">
   </div>
+  <%# <div class="submitbox__text">モデル名 %>
+    <%# <%= f.text_field :model, placeholder: 'モデル名', style: 'width: 100%;height: 30px;'  %> 
+  <%# </div> %>
   <div class="submitbox__text">排気量
   <%= f.number_field :exhaust, placeholder: '排気量', style: 'width: 100%;height: 30px;'  %>
   </div>
@@ -29,5 +33,10 @@
   </div>
 
    <% end %>
-
+   <div class="edit_product2">
+   <div class="submitbox__text">モデル用：検索キーワード 部分一致検索＜参考＞
+    
+  </div>
 </div>
+</div>
+

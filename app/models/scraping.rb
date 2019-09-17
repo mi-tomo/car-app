@@ -7,6 +7,10 @@ class Scraping
     
       evaluation = page.at('.evaluationWrap__contents p span').inner_text if page.at('.evaluationWrap__contents p span')
       model = page.at('.title3 span').inner_text if page.at('.title3 span')
+      model = model.split(/ /)
+      model.pop
+      model = model.join
+      model.slice!(0)
       exhaust = page.at('//th[text()="排気量"]/following-sibling::td[position()=1]').inner_text if page.at('//th[text()="排気量"]/following-sibling::td[position()=1]')
       exhaust.gsub!(/cc/, '')
       modelyear = page.at('.specWrap__box__num').inner_text if page.at('.specWrap__box__num')

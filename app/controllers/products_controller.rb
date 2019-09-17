@@ -97,9 +97,9 @@ end
     @cars = Product.first
     carname = Carname.find_by(address:Product.first.name)
     @carname = carname.maker_name
-
-    @model = Product.where('model LIKE(?)', "%#{params[:keyword]}%") unless params[:keyword]==""
     
+    model = Product.select(:model).distinct
+    @model = model.where('model LIKE(?)', "%#{params[:keyword]}%") unless params[:keyword]==""
     respond_to do |format|
       format.json
       format.html

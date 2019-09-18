@@ -6,7 +6,16 @@ class ProductsController < ApplicationController
     # @products = Product.where(repare: "なし").where.not(evaluation: "R" or ""or null).where.not(price: ""or null).order("distance DESC")
   @products = Product.where(repare: "なし").where.not(evaluation: "R"||""||nil).where.not(price: "---"||""||nil).where.not(distance: "---"||""||nil).order("distance DESC")
   @products = @products.where.not(evaluation: "S"||"1"||"2"||"6")unless Product.first.name == ""
-  @products = @products.where('model LIKE(?)', "%#{Product.first.model}%") unless Product.first.model == ""
+  unless Product.first.model == ""
+      models = Product.first.model 
+      models = models.gsub!(/[[:space:]]/, ' ')
+      models = models.split(/ /)
+      models.each do |a_model|
+        @products = @products.where('model LIKE(?)', "%#{a_model}%")
+      end
+  end
+  
+  # @products = @products.where('model LIKE(?)', "%#{Product.first.model}%") unless Product.first.model == ""
   @products = @products.where('color LIKE(?)', "%#{Product.first.color}%") unless Product.first.color == ""
   @products = @products.where(modelyear: Product.first.modelyear)if Product.first.modelyear != ""
   @products = @products.where(exhaust: Product.first.exhaust)if Product.first.exhaust != ""
@@ -99,7 +108,20 @@ end
     @carname = carname.maker_name
     
     model = Product.select(:model).distinct
-    @model = model.where('model LIKE(?)', "%#{params[:keyword]}%") unless params[:keyword]==""
+    keywords = params[:keyword].to_s
+    keywords  = keywords.gsub!(/[[:space:]]/, ',').to_s
+    keywords  = keywords.split(/,/)
+    
+    if params[:keyword] != ""
+      @model = model
+        keywords.each do |a_keyword| 
+          @model = @model.where('model LIKE(?)', "%#{a_keyword}%")
+        
+        end
+    end
+
+    # @model = model.where('model LIKE(?)', "%#{params[:keyword]}%") unless params[:keyword]==""
+    
     respond_to do |format|
       format.json
       format.html

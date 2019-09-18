@@ -43,7 +43,7 @@ $(function() {
         });
       }
       else {
-        appendErrMsgToHTML("一致するデーターはありません");
+        appendErrMsgToHTML("モデル用：検索キーワード 部分一致検索＜↓参考↓＞<br>一致するデーターはありません");
       }
     })
   });

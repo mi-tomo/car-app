@@ -7,9 +7,11 @@ class ProductsController < ApplicationController
   @products = Product.where(repare: "なし").where.not(evaluation: "R"||""||nil).where.not(price: "---"||""||nil).where.not(distance: "---"||""||nil).order("distance DESC")
   @products = @products.where.not(evaluation: "S"||"1"||"2"||"6")unless Product.first.name == ""
   unless Product.first.model == ""
-      models = Product.first.model 
+      models = Product.first.model + " "
       models = models.gsub!(/[[:space:]]/, ' ')
+      # binding.pry
       models = models.split(/ /)
+      
       models.each do |a_model|
         @products = @products.where('model LIKE(?)', "%#{a_model}%")
       end
@@ -121,9 +123,11 @@ end
     @carname = carname.maker_name
     
     model = Product.select(:model).distinct
-    keywords = params[:keyword].to_s
-    keywords  = keywords.gsub!(/[[:space:]]/, ',').to_s
-    keywords  = keywords.split(/,/)
+    
+    keywords  = params[:keyword].to_s
+    keywords  = keywords + " "
+    keywords  = keywords.gsub!(/[[:space:]]/, ' ').to_s
+    keywords  = keywords.split(/ /)
     
     if params[:keyword] != ""
       @model = model

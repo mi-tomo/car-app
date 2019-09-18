@@ -33,9 +33,22 @@ class ProductsController < ApplicationController
    data.push(distance, price)
    n_data << data
   end
-  
+  # 飛び値トリム
+  if x.count >= 5
+    xmax = x.max(5)
+    ymax = y.max(5)
+    for i in 0..2 do
+      if ymax[i]-ymax[4] > 200
+        tobiti = y.index(y.max)
+        x.delete_at(tobiti)
+        y.delete_at(tobiti)
+        n_data.delete_at(tobiti)
+      end
+    end
+  end
 
- @data = n_data
+
+#  @data = n_data
   
   unless @products[0] == nil
   abc_approximate = Array.approximate_xy(x, y) 
@@ -84,14 +97,14 @@ end
     @cars=Product.new
     
   end
-  def destroy
-    product = Product.all
-    num = Product.count
-    product.where(id: 1..999999).destroy_all
+  # def destroy
+  #   product = Product.all
+  #   num = Product.count
+  #   product.where(id: 1..999999).destroy_all
    
-    redirect_to controller: :products, action: :new
+  #   redirect_to controller: :products, action: :new
 
-    end
+  # end
   def create
    
     Product.create(params.require(:product).permit( :name,:model, :exhaust,:modelyear, :color,:distance, :price,:repare))

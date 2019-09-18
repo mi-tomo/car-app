@@ -2,58 +2,39 @@ require "array.rb"
 class ProductsController < ApplicationController
   before_action :move_to_index, except: [:new,:create]
   def index
-  
-    # @products = Product.where(repare: "なし").where.not(evaluation: "R" or ""or null).where.not(price: ""or null).order("distance DESC")
-  @products = Product.where(repare: "なし").where.not(evaluation: "R"||""||nil).where.not(price: "---"||""||nil).where.not(distance: "---"||""||nil).order("distance DESC")
-  @products = @products.where.not(evaluation: "S"||"1"||"2"||"6")unless Product.first.name == ""
-  unless Product.first.model == ""
-      models = Product.first.model + " "
-      models = models.gsub!(/[[:space:]]/, ' ')
-      # binding.pry
-      models = models.split(/ /)
-      
-      models.each do |a_model|
-        @products = @products.where('model LIKE(?)', "%#{a_model}%")
-      end
-  end
-  
-  # @products = @products.where('model LIKE(?)', "%#{Product.first.model}%") unless Product.first.model == ""
-  @products = @products.where('color LIKE(?)', "%#{Product.first.color}%") unless Product.first.color == ""
-  @products = @products.where(modelyear: Product.first.modelyear)if Product.first.modelyear != ""
-  @products = @products.where(exhaust: Product.first.exhaust)if Product.first.exhaust != ""
-  
-  # @products = @products.where(evaluation: "5")
+  # productテーブル条件ソート
+    @products = Sorting.sorting_products
+  #  グラフ 用値格納
   x = []
   y = []
   n_data = []
-  @products.each do |product|
-   data = []
-   distance = product.distance.to_f
-   x.push(distance)
-   price = product.price.to_f
-   y.push(price)
-   data.push(distance, price)
-   n_data << data
-  end
-  # 飛び値トリム
-  if x.count >= 5
-    xmax = x.max(5)
-    ymax = y.max(5)
-    for i in 0..2 do
-      if ymax[i]-ymax[4] > 200
-        tobiti = y.index(y.max)
-        x.delete_at(tobiti)
-        y.delete_at(tobiti)
-        n_data.delete_at(tobiti)
+    @products.each do |product|
+    data = []
+    distance = product.distance.to_f
+    x.push(distance)
+    price = product.price.to_f
+    y.push(price)
+    data.push(distance, price)
+    n_data << data
+    end  
+      # 飛び値トリム
+      if x.count >= 5
+        xmax = x.max(5)
+        ymax = y.max(5)
+        for i in 0..2 do
+          if ymax[i]-ymax[4] > 200
+            tobiti = y.index(y.max)
+            x.delete_at(tobiti)
+            y.delete_at(tobiti)
+            n_data.delete_at(tobiti)
+          end
+        end
       end
-    end
-  end
-
-
-#  @data = n_data
-  
+  # require "graph.rb"
   unless @products[0] == nil
+  #近似曲線算出  
   abc_approximate = Array.approximate_xy(x, y) 
+  # 購入予定価格と相場の比較判定
   abc = abc_approximate[0]
   @hantei0="購入検討車の「走行距離」と「金額」を詳細条件から入力してください"
     unless Product.first.distance == "" && Product.first.distance ==""
@@ -72,7 +53,7 @@ class ProductsController < ApplicationController
           @hantei0=""
         end
     end
-  
+  # グラフ 用データ
   @approximate = abc_approximate.drop(1)
   # binding.pry
   maltidata1={}
@@ -110,7 +91,7 @@ end
   def create
    
     Product.create(params.require(:product).permit( :name,:model, :exhaust,:modelyear, :color,:distance, :price,:repare))
-     
+    #市場情報スクレープ
     Scraping.scraping_url(params.require(:product).permit( :name)[:name])
     redirect_to controller: :products, action: :index
   

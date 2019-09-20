@@ -35,6 +35,7 @@ class ProductsController < ApplicationController
   #近似曲線算出  
   abc_approximate = Array.approximate_xy(x, y) 
   # 購入予定価格と相場の比較判定
+  # binding.pry
   abc = abc_approximate[0]
   @hantei0="購入検討車の「走行距離」と「金額」を詳細条件から入力してください"
     unless Product.first.distance == "" && Product.first.distance ==""
@@ -65,6 +66,7 @@ class ProductsController < ApplicationController
   maltidata3={}
   maltidata3[:name]  ="検討中案件"
   maltidata3[:data]  = hikakuresult
+  # binding.pry
 end
   
   @maltidata=[maltidata1,maltidata2,maltidata3]

@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   # binding.pry
   abc = abc_approximate[0]
   @hantei0="購入検討車の「走行距離」と「金額」を詳細条件から入力してください"
-    unless Product.first.distance == "" && Product.first.distance ==""
+    unless Product.first.distance == nil && Product.first.distance ==nil
     hikakukyori = Product.first.distance.to_i
     heikinprice = abc[0] + abc[1] * hikakukyori + abc[2] * hikakukyori ** 2
     hikakuresult = [[hikakukyori,Product.first.price.to_i]]
@@ -77,7 +77,7 @@ end
   def new
     
     product = Product.all
-    num = Product.count
+    # num = Product.count
     product.where(id: 1..999999).destroy_all
     @cars=Product.new
     

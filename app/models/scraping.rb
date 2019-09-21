@@ -1,6 +1,6 @@
 class Scraping
     def self.scraping_contents(link)
-      begin
+      # begin
       agent = Mechanize.new
       page = agent.get(link)
     
@@ -41,6 +41,7 @@ class Scraping
       product.unit = unit
       product.price = price
       product.repare = repare
+    begin
       product.save
     rescue => e
       puts e

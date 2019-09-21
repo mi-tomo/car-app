@@ -4,25 +4,25 @@
   <%= form_for @cars do |f| %>
   
  
- <div class="submitbox__text">車種情報入力
+ <div class="submitbox__text">車種情報入力 ＊選択車種の中古車価格相場を算出します
     <%= f.collection_select :name, Carname.all, :address, :maker_name , style: 'width: 100%;height: 30px;' %>
     </div>
-  <div class="submitbox__image">モデル名
+  <div class="submitbox__image">モデル名 （任意）
     <%= f.text_field :model, placeholder: 'モデル名', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__text">排気量
+  <div class="submitbox__text">排気量 （任意）
   <%= f.number_field :exhaust, placeholder: '排気量', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__text">年式
+  <div class="submitbox__text">年式 （任意）
   <%= f.number_field :modelyear, placeholder: '＊年式', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__image">車体色
+  <div class="submitbox__image">車体色 （任意）
     <%= f.text_field :color, placeholder: '車体色', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__text">購入検討車 走行距離（万km）（計算時必須）
+  <div class="submitbox__text">購入検討車 走行距離（万km）（計算時必須） （任意）
   <%= f.number_field :distance, placeholder: '＊走行距離（万km)', style: 'width: 100%;height: 30px;'  %>
   </div>
-  <div class="submitbox__text">購入検討車 金額（万円）（計算時必須）
+  <div class="submitbox__text">購入検討車 金額（万円）（計算時必須） （任意）
   <%= f.number_field :price, placeholder: '＊金額（万円）', style: 'width: 100%;height: 30px;'  %>
   </div>
   <div class="submitbox__submit">
@@ -35,6 +35,6 @@
 
 </div>
 <div class='loadingWrap'>
-	<img src='/car.gif'>＊該当車の台数が多いときは５分以上かかることがあります
+	<img src='/car.gif'>＊該当車の台数が多いときは10分以上かかることがあります
   
 </div>

@@ -1,4 +1,3 @@
-
 # config valid only for current version of Capistrano
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
 lock '3.11.1'
@@ -17,7 +16,7 @@ set :rbenv_ruby, '<このアプリで使用しているrubyのバージョン>' 
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],
-                  keys: ['<ローカルPCのEC2インスタンスのSSH鍵(pem)へのパス>']  ※例：~/.ssh/key_pem.pem
+                  keys: ['~/.ssh/car-app.pem']  #※例：~/.ssh/key_pem.pem
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }

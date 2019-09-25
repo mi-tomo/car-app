@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_09_13_045119) do
     t.string "exhaust"
     t.string "modelyear"
     t.string "color"
-    t.string "distance"
+    t.float "distance"
     t.string "price"
     t.string "repare"
     t.string "evaluation"

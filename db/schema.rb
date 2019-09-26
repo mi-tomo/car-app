@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2019_09_25_001052) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "maker"
     t.string "name"
+    t.string "session_id"
     t.string "model"
     t.string "exhaust"
     t.string "modelyear"

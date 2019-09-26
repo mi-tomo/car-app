@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   # resources :products, only: [:index, :create,  :update,  :edit, :new ,:destroy]
   resources :products
   resources :carnames
+  resources :orders
   
 end

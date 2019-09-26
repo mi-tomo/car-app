@@ -10,13 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_13_045119) do
+ActiveRecord::Schema.define(version: 2019_09_25_001052) do
 
   create_table "carnames", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "maker_name"
     t.string "maker"
     t.string "name"
     t.string "address"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "maker"
+    t.string "name"
+    t.string "model"
+    t.string "exhaust"
+    t.string "modelyear"
+    t.string "color"
+    t.float "distance"
+    t.string "price"
+    t.string "repare"
+    t.string "evaluation"
+    t.string "unit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

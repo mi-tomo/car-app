@@ -1,5 +1,5 @@
 class Scraping
-  def self.scraping_contents(link)
+  def self.scraping_contents(link, order_id, car_pass)
     # begin
     agent = Mechanize.new
     page = agent.get(link)
@@ -30,7 +30,9 @@ class Scraping
       end
     price = page.at('.totalPrice__price span').inner_text if page.at('.totalPrice__price span')
     repare = page.at('//p[text()="修復歴"]/following-sibling::p[position()=1]').inner_text if page.at('//p[text()="修復歴"]/following-sibling::p[position()=1]')
-  
+    maker = Carname.find_by(address: car_pass)
+    maker = maker.maker_name
+
     product = Product.new
     product.evaluation = evaluation
     product.model = model
@@ -41,13 +43,16 @@ class Scraping
     product.unit = unit
     product.price = price
     product.repare = repare
+    product.name = car_pass
+    product.maker = maker
   begin
     product.save
+# binding.pry
   rescue => e
     puts e
   end
   end
-  def self.scraping_url(urlpass)
+  def self.scraping_url(urlpass,order_id)
       links = [] # 個別ページのリンクを保存する配列
       agent = Mechanize.new
       
@@ -74,7 +79,7 @@ class Scraping
           # puts next_url
       end
      links.each do |link|
-     scraping_contents('https://www.carsensor.net/' + link)
+     scraping_contents('https://www.carsensor.net/' + link , order_id, urlpass)
 
      end
    end

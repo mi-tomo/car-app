@@ -1,9 +1,12 @@
 require "array.rb"
 class ProductsController < ApplicationController
+  @@order_id = 1
   before_action :move_to_index, except: [:new,:create]
   def index
   # productテーブル条件ソート
     @products = Sorting.sorting_products
+    # @products = Product.all
+    # binding.pry
   #  グラフ 用値格納
   x = []
   y = []
@@ -38,17 +41,17 @@ class ProductsController < ApplicationController
   # binding.pry
   abc = abc_approximate[0]
   @hantei0="購入検討車の「走行距離」と「金額」を詳細条件から入力してください"
-    unless Product.first.distance == nil && Product.first.distance ==nil
-    hikakukyori = Product.first.distance.to_i
+    unless Order.last.distance == nil && Order.last.distance ==nil
+    hikakukyori = Order.last.distance.to_i
     heikinprice = abc[0] + abc[1] * hikakukyori + abc[2] * hikakukyori ** 2
-    hikakuresult = [[hikakukyori,Product.first.price.to_i]]
-        if heikinprice > Product.first.price.to_i
-          sagaku = heikinprice - Product.first.price.to_i
+    hikakuresult = [[hikakukyori,Order.last.price.to_i]]
+        if heikinprice > Order.last.price.to_i
+          sagaku = heikinprice - Order.last.price.to_i
           @hantei1 = "相場平均価格より_#{sagaku.round(1)}万円_割安です"
           @hantei2 =""
           @hantei0=""
         else 
-          sagaku = Product.first.price.to_i - heikinprice
+          sagaku = Order.last.price.to_i - heikinprice
           @hantei2 = "相場平均価格より_#{sagaku.round(1)}万円_割高です（要再検討）"
           @hantei1=""
           @hantei0=""
@@ -66,12 +69,13 @@ class ProductsController < ApplicationController
   maltidata3={}
   maltidata3[:name]  ="検討中案件"
   maltidata3[:data]  = hikakuresult
-  # binding.pry
+  
 end
   
   @maltidata=[maltidata1,maltidata2,maltidata3]
-  carname = Carname.find_by(address:Product.first.name)
+  carname = Carname.find_by(address:Order.last.name)
   @carname = carname.maker_name
+  
 end
 
   def new
@@ -92,17 +96,21 @@ end
   # end
   def create
    
-    Product.create(params.require(:product).permit( :name,:model, :exhaust,:modelyear, :color,:distance, :price,:repare))
+    order = Order.create(params.require(:product).permit( :name,:model, :exhaust,:modelyear, :color,:distance, :price,:repare))
+    order_id = order.attributes['id']
+    @@order_id = order_id
     #市場情報スクレープ
-    Scraping.scraping_url(params.require(:product).permit( :name)[:name])
-    redirect_to controller: :products, action: :index
-  
+    Scraping.scraping_url(params.require(:product).permit( :name)[:name],order_id)
+    redirect_to controller: :products, action: :index 
+   
   end
 
   def edit
+    # binding.pry
+    @cars = Order.find(@@order_id)
     
-    @cars = Product.first
-    carname = Carname.find_by(address:Product.first.name)
+    
+    carname = Carname.find_by(address:@cars.name)
     @carname = carname.maker_name
     
     model = Product.select(:model).distinct
@@ -130,13 +138,16 @@ end
   end
   
 
-  def update
-    product = Product.first
-    if product.present?
-      product.update(params.require(:product).permit(:model, :exhaust,:modelyear, :color,:distance, :price,:repare))
-    end
-    redirect_to controller: :products, action: :index
-  end
+  # def update
+    
+  #   order = Order.last
+  #   if order.present?
+  #     order.update(params.require(:product).permit(:model))
+  #     order.update(params.require(:order).permit(:model, :exhaust,:modelyear, :color,:distance, :price,:repare))
+  #   end
+  #   binding.pry
+  #   redirect_to controller: :products, action: :index
+  # end
   # private
   # def product_params
     
@@ -144,8 +155,13 @@ end
     
   private
   def move_to_index
-    product = Product.first
-    redirect_to controller: :products, action: :new if product == nil
+    order = Order.last
+    
+    redirect_to controller: :products, action: :new if order == nil
+    # binding.pry
+    # product = Order.first
+    # binding.pry
+    # redirect_to controller: :products, action: :new if product == nil
   end
   
 end

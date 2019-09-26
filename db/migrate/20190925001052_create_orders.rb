@@ -1,8 +1,8 @@
 class CreateOrders < ActiveRecord::Migration[5.2]
   def change
     create_table :orders do |t|
-      t.string      :maker
       t.string      :name
+      t.string      :session_id
       t.string      :model
       t.string        :exhaust
       t.string        :modelyear

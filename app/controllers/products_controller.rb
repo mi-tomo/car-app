@@ -1,10 +1,10 @@
 require "array.rb"
 class ProductsController < ApplicationController
-  @@order_id = 1
+  # @@order_id = 1
   before_action :move_to_index, except: [:new,:create]
   def index
   # productテーブル条件ソート
-    @products = Sorting.sorting_products
+    @products = Sorting.sorting_products(request.session_options[:id])
     # @products = Product.all
     # binding.pry
   #  グラフ 用値格納
@@ -79,12 +79,13 @@ end
 end
 
   def new
-    
+    reset_session
     product = Product.all
     # num = Product.count
     product.where(id: 1..999999).destroy_all
     @cars=Product.new
-    
+    request.session_options[:id]
+    # binding.pry
   end
   # def destroy
   #   product = Product.all
@@ -97,18 +98,19 @@ end
   def create
    
     order = Order.create(params.require(:product).permit( :name,:model, :exhaust,:modelyear, :color,:distance, :price,:repare))
+    order.session_id = request.session_options[:id]
+    order.save
     order_id = order.attributes['id']
-    @@order_id = order_id
+    # @@order_id = order_id
     #市場情報スクレープ
     Scraping.scraping_url(params.require(:product).permit( :name)[:name],order_id)
     redirect_to controller: :products, action: :index 
-   
+  #  binding.pry
   end
 
   def edit
     # binding.pry
-    @cars = Order.find(@@order_id)
-    
+    @cars = Order.find_by(session_id: request.session_options[:id])
     
     carname = Carname.find_by(address:@cars.name)
     @carname = carname.maker_name
@@ -155,7 +157,7 @@ end
     
   private
   def move_to_index
-    order = Order.last
+    order = Order.find_by(session_id: request.session_options[:id])
     
     redirect_to controller: :products, action: :new if order == nil
     # binding.pry

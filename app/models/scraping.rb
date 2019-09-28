@@ -1,4 +1,5 @@
 class Scraping
+  @@second = 0
   def self.scraping_contents(link, order_id, car_pass)
     # begin
     agent = Mechanize.new
@@ -32,7 +33,7 @@ class Scraping
     repare = page.at('//p[text()="修復歴"]/following-sibling::p[position()=1]').inner_text if page.at('//p[text()="修復歴"]/following-sibling::p[position()=1]')
     maker = Carname.find_by(address: car_pass)
     maker = maker.maker_name
-
+    order = Order.find( order_id)
     product = Product.new
     product.evaluation = evaluation
     product.model = model
@@ -45,6 +46,7 @@ class Scraping
     product.repare = repare
     product.name = car_pass
     product.maker = maker
+    product.session_id = order.session_id
   begin
     product.save
 # binding.pry
@@ -53,13 +55,16 @@ class Scraping
   end
   end
   def self.scraping_url(urlpass,order_id)
+    start = Time.now
+    start = start.to_i
+    passtime = 0
       links = [] # 個別ページのリンクを保存する配列
       agent = Mechanize.new
       
       next_url = "/usedcar#{urlpass}index.html"
-      
-      while true 
-  
+      i = 0
+      while i <= 10 
+      i += 1
       current_page = agent.get("https://www.carsensor.net"+ next_url)
   
       elements = current_page.search('.casetMedia__obj a')
@@ -78,9 +83,18 @@ class Scraping
           next_url = next_link
           # puts next_url
       end
-     links.each do |link|
-     scraping_contents('https://www.carsensor.net/' + link , order_id, urlpass)
-
-     end
+      
+      links.each do |link|
+        if passtime <= 55
+          puts passtime
+          timenow = Time.now
+          timenow = timenow.to_i
+          passtime = timenow - start
+        
+          scraping_contents('https://www.carsensor.net/' + link , order_id, urlpass)
+        else
+          break
+        end
+      end
    end
 end

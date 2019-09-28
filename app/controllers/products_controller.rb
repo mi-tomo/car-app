@@ -81,8 +81,8 @@ end
   def new
     reset_session
     product = Product.all
-    # num = Product.count
-    product.where(id: 1..999999).destroy_all
+    num = Product.count
+    product.where(id: 1..999999).destroy_all if num > 10000
     @cars=Product.new
     request.session_options[:id]
     # binding.pry

@@ -2,7 +2,9 @@ class Sorting
   def self.sorting_products(session_pass)
     
     current_order = Order.find_by(session_id: session_pass)
-    @products = Product.where(repare: "なし").where.not(evaluation: "R"||""||nil).where.not(price: "---"||""||nil).where.not(distance: "---"||""||nil).order("distance DESC")
+    @products = Product.where(session_id: session_pass)
+    
+    @products = @products.where(repare: "なし").where.not(evaluation: "R"||""||nil).where.not(price: "---"||""||nil).where.not(distance: "---"||""||nil).order("distance DESC")
     
     @products = @products.where.not(evaluation: "S"||"1"||"2"||"6")unless current_order.name == ""||current_order.name == nil
     

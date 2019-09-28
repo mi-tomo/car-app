@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
       order.update(params.require(:product).permit(:model))
       order.update(params.require(:order).permit(:model, :exhaust,:modelyear, :color,:distance, :price,:repare))
     end
-  
-    redirect_to controller: :products, action: :index
+
+    redirect_to controller: :products, action: :index, id: params[:id]
   end
 end

@@ -8,8 +8,8 @@
         </div>
         <div class="i_up__mid">
       
-        <a href="/products/:id/edit">詳細条件<br>入力</a>
-       
+
+       <%= link_to raw("詳細条件<br/>（入力）"), "/products/#{@cars.id}/edit", method: :get %>
         </div>
         <div class="i_up__right">
         <a href="/products/new">新規検索<br>(リセット)</a>

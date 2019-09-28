@@ -3,8 +3,18 @@ class ProductsController < ApplicationController
   # @@order_id = 1
   before_action :move_to_index, except: [:new,:create]
   def index
+    order_id = params[:id]
+
+    
+    # if params[:id] = ""|| params[:id] = nil
+    # order_id = request.session_options[:id]
+    # else
+    # order_id = params[:id] 
+    # end
+    # binding.pry
+    @cars = Order.find(order_id)
   # productテーブル条件ソート
-    @products = Sorting.sorting_products(request.session_options[:id])
+    @products = Sorting.sorting_products(order_id)
     # @products = Product.all
     # binding.pry
   #  グラフ 用値格納
@@ -73,7 +83,8 @@ class ProductsController < ApplicationController
 end
   
   @maltidata=[maltidata1,maltidata2,maltidata3]
-  carname = Carname.find_by(address:Order.last.name)
+  thisorder = Order.find(order_id)
+  carname = Carname.find_by(address: thisorder.name)
   @carname = carname.maker_name
   
 end
@@ -85,7 +96,7 @@ end
     product.where(id: 1..999999).destroy_all if num > 10000
     @cars=Product.new
     request.session_options[:id]
-    # binding.pry
+  
   end
   # def destroy
   #   product = Product.all
@@ -101,16 +112,16 @@ end
     order.session_id = request.session_options[:id]
     order.save
     order_id = order.attributes['id']
-    # @@order_id = order_id
+   
     #市場情報スクレープ
     Scraping.scraping_url(params.require(:product).permit( :name)[:name],order_id)
-    redirect_to controller: :products, action: :index 
-  #  binding.pry
+    redirect_to controller: :products, action: :index ,id: order_id
+ 
   end
 
   def edit
-    # binding.pry
-    @cars = Order.find_by(session_id: request.session_options[:id])
+
+    @cars = Order.find( params[:id])
     
     carname = Carname.find_by(address:@cars.name)
     @carname = carname.maker_name
@@ -130,7 +141,6 @@ end
         end
     end
 
-    # @model = model.where('model LIKE(?)', "%#{params[:keyword]}%") unless params[:keyword]==""
     
     respond_to do |format|
       format.json
@@ -157,13 +167,10 @@ end
     
   private
   def move_to_index
-    order = Order.find_by(session_id: request.session_options[:id])
+    order = params[:id]
     
     redirect_to controller: :products, action: :new if order == nil
-    # binding.pry
-    # product = Order.first
-    # binding.pry
-    # redirect_to controller: :products, action: :new if product == nil
+    
   end
   
 end

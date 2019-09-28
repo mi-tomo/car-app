@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   # post 'products' => 'products#create'
   # get 'products' => 'products#edit' 
   # resources :products, only: [:index, :create,  :update,  :edit, :new ,:destroy]
-  resources :products
+  
   resources :carnames
-  resources :orders
+  resources :orders 
+    resources :products
+  
+
   
 end

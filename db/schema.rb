@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_09_25_001052) do
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "session_id"
     t.string "maker"
     t.string "name"
     t.string "model"

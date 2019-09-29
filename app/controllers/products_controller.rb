@@ -93,7 +93,7 @@ end
     reset_session
     product = Product.all
     num = Product.count
-    product.where(id: 1..999999).destroy_all if num > 10000
+    product.where(id: 1..9999999999999999999999999999999999).destroy_all if num > 5000
     @cars=Product.new
     request.session_options[:id]
   
@@ -115,6 +115,7 @@ end
    
     #市場情報スクレープ
     Scraping.scraping_url(params.require(:product).permit( :name)[:name],order_id)
+
     redirect_to controller: :products, action: :index ,id: order_id
  
   end

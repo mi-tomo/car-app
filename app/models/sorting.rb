@@ -10,7 +10,7 @@ class Sorting
     unless current_order.model == "" ||current_order.model == nil
         models = current_order.model + " "
         models = models.gsub!(/[[:space:]]/, ' ')
-        # binding.pry
+        
         models = models.split(/ /)
         
         models.each do |a_model|
@@ -19,7 +19,7 @@ class Sorting
         
     end
     
-    # @products = @products.where('model LIKE(?)', "%#{Product.first.model}%") unless Product.first.model == ""
+   
     @products = @products.where('color LIKE(?)', "%#{current_order.color}%") unless current_order.color == ""||current_order.color == nil
     
     @products = @products.where(modelyear: current_order.modelyear)unless current_order.modelyear == ""|| current_order.modelyear == nil

@@ -16,10 +16,10 @@ class Sorting
         models.each do |a_model|
           @products = @products.where('model LIKE(?)', "%#{a_model}%")
         end
-        # binding.pry
+        
     end
     
-    # @products = @products.where('model LIKE(?)', "%#{Product.first.model}%") unless Product.first.model == ""
+   
     @products = @products.where('color LIKE(?)', "%#{current_order.color}%") unless current_order.color == ""||current_order.color == nil
     
     @products = @products.where(modelyear: current_order.modelyear)unless current_order.modelyear == ""|| current_order.modelyear == nil

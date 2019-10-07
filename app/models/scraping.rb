@@ -85,7 +85,7 @@ class Scraping
       end
       
       links.each do |link|
-        if passtime <= 58
+        if passtime <= 40
           puts passtime
           timenow = Time.now
           timenow = timenow.to_i

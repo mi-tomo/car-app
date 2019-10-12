@@ -24,10 +24,12 @@ $(function() {
 
   $("#product_model").on("keyup", function() {
     var input = $("#product_model").val();
-    console.log(input);
+    
+    var url = $(this).attr('action')
+    
     $.ajax({
       type: 'GET',
-      url: '/products/1/edit',
+      url: url,
       data: { keyword: input },
       dataType: 'json'
     })
@@ -38,7 +40,7 @@ $(function() {
       ;
       if (products.length !== 0) {
         products.forEach(function(product){
-          console.log(product.model)
+      
           appendProduct(product);
         });
       }

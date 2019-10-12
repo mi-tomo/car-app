@@ -91,21 +91,22 @@ end
 
   def new
     reset_session
-    product = Product.all
-    num = Product.count
-    product.where(id: 1..9999999999999999999999999999999999).destroy_all if num > 1000
+    # product = Product.all
+    # num = Product.count
+    # product.where(id: 1..9999999999999999999999999999999999).destroy_all if num > 1000
     @cars=Product.new
     request.session_options[:id]
   
   end
-  # def destroy
-  #   product = Product.all
-  #   num = Product.count
-  #   product.where(id: 1..999999).destroy_all
+  def destroy
+    a_order = Order.find(params[:id])
+    ordersession = a_order.session_id
+    product = Product.where(session_id: ordersession)
+    product.destroy_all
    
-  #   redirect_to controller: :products, action: :new
+    redirect_to controller: :products, action: :new
 
-  # end
+  end
   def create
    
     order = Order.create(params.require(:product).permit( :name,:model, :exhaust,:modelyear, :color,:distance, :price,:repare))
@@ -127,19 +128,27 @@ end
     carname = Carname.find_by(address:@cars.name)
     @carname = carname.maker_name
     
-    model = Product.select(:model).distinct
+    product = Product.where(session_id: @cars.session_id)
+    model = product.select(:model).distinct
+   
     
+
+
+
+
     keywords  = params[:keyword].to_s
-    keywords  = keywords + " "
+   
+    keywords  = keywords  + " "
     keywords  = keywords.gsub!(/[[:space:]]/, ' ').to_s
     keywords  = keywords.split(/ /)
-    
+ 
     if params[:keyword] != ""
       @model = model
         keywords.each do |a_keyword| 
           @model = @model.where('model LIKE(?)', "%#{a_keyword}%")
         
         end
+      
     end
 
     

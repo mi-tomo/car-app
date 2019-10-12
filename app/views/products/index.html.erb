@@ -12,7 +12,8 @@
        <%= link_to raw("詳細条件<br/>（入力）"), "/products/#{@cars.id}/edit", method: :get %>
         </div>
         <div class="i_up__right">
-        <a href="/products/new">新規検索<br>(リセット)</a>
+        <%= link_to raw("新規検索<br>(リセット)"), "/products/#{@cars.id}", method: :delete %>
+        <%# <a href="/products/new">新規検索<br>(リセット)</a> %>
         </div>
   </div>
   <div class="i_mid1">

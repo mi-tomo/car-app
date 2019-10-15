@@ -8,11 +8,10 @@
         </div>
         <div class="i_up__mid">
       
-
-       <%= link_to raw("詳細条件<br/>（入力）"), "/products/#{@cars.id}/edit", method: :get %>
+       <%= link_to raw("詳細条件<br/>（入力）"), "/products/#{@cars.id}/edit", class: "btn-edit",method: :get %>
         </div>
         <div class="i_up__right">
-        <%= link_to raw("新規検索<br>(リセット)"), "/products/#{@cars.id}", method: :delete %>
+        <%= link_to raw("新規検索<br>(リセット)"), "/products/#{@cars.id}", class: "btn-reset",method: :delete %>
         <%# <a href="/products/new">新規検索<br>(リセット)</a> %>
         </div>
   </div>

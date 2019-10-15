@@ -117,12 +117,16 @@ html {
     text-align:center;
     margin-left:10px;
     padding-top:0;
+    text-decoration:none;
+    color:rgb(122, 122, 122);
     font-weight: bold;
     border: solid rgb(0, 251, 255);
   }
   .i_up__mid{
     height: 60px;
     width: 12%;
+    text-decoration:none;
+    color:blue;
     float:right;
     font-size:20px;
     text-align:center;
@@ -131,6 +135,18 @@ html {
     font-weight: bold;
     border: solid rgb(0, 251, 255);
 
+  }
+  .btn-edit{
+    text-decoration:none;
+    color:orange;
+    font-weight:bold;
+
+  }
+  .btn-reset{
+    text-decoration:none;
+    color:blue;
+    font-weight:bold;
+    
   }
 
   .i_mid1{

@@ -103,7 +103,7 @@ end
     ordersession = a_order.session_id
     product = Product.where(session_id: ordersession)
     product.destroy_all
-   
+    a_order.destroy
     redirect_to controller: :products, action: :new
 
   end

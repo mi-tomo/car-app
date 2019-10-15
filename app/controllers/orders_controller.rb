@@ -32,8 +32,8 @@ class OrdersController < ApplicationController
   
 
   def update
-    
-    order = Order.last
+  
+    order = Order.find(params[:id])
     if order.present?
       order.update(params.require(:product).permit(:model))
       order.update(params.require(:order).permit(:model, :exhaust,:modelyear, :color,:distance, :price,:repare))

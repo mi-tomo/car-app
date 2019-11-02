@@ -80,14 +80,12 @@ html {
   .i_up__left1{
     height: 60px;
     width: 25%;
-    // display: inline-block;
     float:left;
     font-size:25px;
     line-height: 25px;
     padding-left:20px;
     display: flex;
     align-items: center;
-    // vertical-align:middle;
     text-align:left;
     padding-top:0;
     font-weight: bold;
@@ -153,9 +151,6 @@ html {
     height:55px;
     width: 95%;
     display: block;
-    // background-color:rgba(255, 255, 255,0.95);
-    // border: solid rgb(0, 251, 255);
-    // padding-top:80px;
     margin: 20px;
     padding:0 20px;
   }
@@ -178,7 +173,7 @@ html {
     display: block; 
     font-weight: bold;
     font-size:20px;
-    // border: solid rgb(0, 251, 255);
+   
   }
 
   .i_mid__label{
@@ -187,7 +182,7 @@ html {
     text-align:left;
     font-weight: bold;
     font-size:20px;
-    // display: block; 
+
     float:right;
   }
   .i_mid__distance{
@@ -195,7 +190,6 @@ html {
     width: 100px;
     text-align: right;
     float:right;
-    // display: block; 
   }
 
 .i_mid__graff{
@@ -210,59 +204,44 @@ html {
 }
 .i_lowm{
   width: 100%;
-  // height:5px;
   display: block;
  
   padding-top:0;
   margin-bottom:0;
- //  border: solid rgb(0, 251, 255);
  }
 .i_low0{
   width: 95%;
   color:orange;
- //  height:100;
   display: block;
   font-size:40px;
   background-color:rgba(255, 255, 255,0.9);
- //  line-height: 30px;
- //  vertical-align:top;
   text-align:center;
   padding-top:0;
   font-weight: bold;
   margin:0 30px;
-  // margin-bottom:0;
- //  border: solid rgb(0, 251, 255);
  }
 .i_low1{
  width: 95%;
  color:blue;
-//  height:100;
  display: block;
  font-size:40px;
  background-color:rgba(255, 255, 255,0.9);
-//  line-height: 30px;
-//  vertical-align:top;
  text-align:center;
  padding-top:0;
  font-weight: bold;
  margin:0 30px;
-//  margin-bottom:0;
-//  border: solid rgb(0, 251, 255);
 }
 .i_low2{
   width: 95%;
   color:red;
- //  height:100;
   display: block;
   font-size:40px;
   background-color:rgba(255, 255, 255,0.9);
- //  line-height: 30px;
- //  vertical-align:top;
   text-align:center;
   padding-top:0;
   font-weight: bold;
   margin:0 30px;
- //  border: solid rgb(0, 251, 255);
+ 
  }
 // ------------------
  
@@ -273,20 +252,16 @@ html {
   width: 100%;
   height:100%;
   padding:100px 30px;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   
   
 margin:auto;
-  // left:500px;
+  
 }
-// .submitbox__frame{
 
-//   width: 400px;
-//   height:500px;
-//   padding:30px 30px;
-//   border: solid rgb(0, 251, 255);
-//   // margin:auto;
-//   // left:500px;
-// }
 .new_product{
   font-size:15px;
   width: 400px;
@@ -311,27 +286,22 @@ margin:auto;
   height:600px;
   padding:30px 30px;
   float:left;
-  // display: inline-block;
   background-color:rgba(255, 255, 255,0.9);
   border: solid rgb(0, 251, 255);
-  // margin:auto;
+ 
   margin-left: 250px;
   font-weight: bold;
-  // left:500px;
+ 
 }
 .edit_product2{
   font-size:15px;
   width: 400px;
   height:600px;
   padding:30px 30px;
-  // display: inline-block;
-  float:left;
   background-color:rgba(255, 255, 255,0.9);
   border: solid rgb(0, 251, 255);
-  // margin-top:400px;
   font-weight: bold;
-  // left:500px;
-  overflow: auto;
+ 
 }
 .submitbox__image{
   margin-top:15px;
@@ -370,19 +340,16 @@ margin:auto;
   width:80%;
 	margin-top: -100px;
   margin-left: -150px;
-  // border: solid rgb(0, 251, 255);
+  
 }
 .edit_order{
   font-size:15px;
   width: 400px;
   height:600px;
   padding:30px 30px;
+  
   float:left;
-  // display: inline-block;
   background-color:rgba(255, 255, 255,0.9);
   border: solid rgb(0, 251, 255);
-  // margin:auto;
-  margin-left: 250px;
   font-weight: bold;
-  // left:500px;
 }
